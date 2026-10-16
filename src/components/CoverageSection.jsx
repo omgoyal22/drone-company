@@ -4,8 +4,8 @@ export default function CoverageSection() {
   return (
     <section className="coverage-section">
       <div className="container coverage-grid">
-        <div className="coverage-text">
-          <div className="section-label">Operational Math</div>
+        <div className="coverage-text section-header text-left">
+          <span className="section-label">Operational Math</span>
           <h2 className="section-title">A round-the-clock post is not one job.</h2>
           <p className="problem-body">
             Covering a position every hour of the week takes 168 hours. One person may work around 48 of them. Before a single day of leave, illness or a weekly off, that post needs four people. A robot works the whole week, including the festival days when a building is at its busiest and its staffing at its thinnest.

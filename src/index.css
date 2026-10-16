@@ -6,27 +6,28 @@
    =================================================================== */
 
 :root {
-  /* Brand Identity Colors — Directly from RESCO Logo */
+  /* Brand Identity Colors — Darker industrial orange for high contrast */
   --resco-black:    #1C1C1C;        /* Near-black from logo mark */
   --resco-charcoal: #2A2A2A;        /* Body dark text */
-  --resco-orange:   #F26522;        /* Industrial orange from logo facet */
-  --resco-orange-d: #D95510;        /* Darker press state */
-  --resco-orange-tint: rgba(242, 101, 34, 0.07);
+  --resco-orange:   #D9531A;        /* High-contrast industrial orange (darker for WCAG compliance) */
+  --resco-orange-d: #B8400E;        /* Darker hover/press state */
+  --resco-orange-tint: rgba(217, 83, 26, 0.09);
 
-  /* Page Backgrounds — Off-white, architectural */
-  --bg-page:       #F5F4F2;         /* Warm off-white — like engineering paper */
-  --bg-alt:        #EEECE9;         /* Slightly darker alternating band */
-  --bg-white:      #FFFFFF;
-  --bg-dark:       #1C1C1C;         /* Dark closing band */
+  /* Page Backgrounds — Distinct, architectural contrast */
+  --bg-page:         #FAF9F6;       /* Clean warm off-white */
+  --bg-alt:          #EAE5DC;       /* Clearly distinct architectural sandstone band */
+  --bg-white:        #FFFFFF;
+  --bg-dark:         #1C1C1C;       /* Dark survey block */
+  --bg-dark-section: #141414;       /* Full dark industrial showcase section */
 
   /* Text */
-  --text-primary:   #1C1C1C;
-  --text-secondary: #4B4B4B;
-  --text-muted:     #7A7A7A;
+  --text-primary:   #1A1A1A;
+  --text-secondary: #404040;
+  --text-muted:     #737373;
   --text-light:     #FFFFFF;
 
-  /* Borders — thin, precise engineering lines */
-  --border:        #DEDBD6;
+  /* Borders — defined, architectural edges */
+  --border:        #D4CEC5;
   --border-dark:   #1C1C1C;
 
   /* Typography */
@@ -221,10 +222,13 @@ a {
   background: var(--resco-orange);
   color: #FFFFFF;
   border-color: var(--resco-orange);
+  font-weight: 600;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 .btn-primary:hover {
   background: var(--resco-orange-d);
   border-color: var(--resco-orange-d);
+  color: #FFFFFF;
 }
 
 /* Secondary — outlined */
@@ -282,29 +286,50 @@ a {
   padding-bottom: var(--section-v);
 }
 
-/* Section overline — plain uppercase text, no pill badge */
-.section-overline {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--resco-orange);
-  margin-bottom: 14px;
+/* Section Header Alignment Helpers */
+.section-header {
+  margin-bottom: 48px;
 }
 
-/* Legacy class support — stripped of pill badge, now plain */
+.section-header.text-center,
+.text-center {
+  text-align: center;
+}
+
+.section-header.text-center .section-label,
+.section-header.text-center .section-overline,
+.text-center > .section-label,
+.text-center > .section-overline {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-header.text-left,
+.text-left {
+  text-align: left;
+}
+
+.section-header.text-left .section-label,
+.section-header.text-left .section-overline,
+.text-left > .section-label,
+.text-left > .section-overline {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+/* Section overline & label — bumped from 11px to 13px, bold, high contrast */
+.section-overline,
 .section-label {
-  display: block;
+  display: inline-block;
   font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--resco-orange);
   margin-bottom: 14px;
-  width: fit-content;
 }
 
 .section-label .badge-sparkle {
@@ -460,22 +485,71 @@ a {
   background: var(--bg-white);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 72px 0;
-  text-align: center;
+  padding: 44px 0;
 }
 
-.brand-statement-inner {
-  max-width: 780px;
-  margin: 0 auto;
+.capabilities-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
 }
 
-.brand-statement-text {
+.capability-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 6px 4px;
+}
+
+.capability-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background: var(--resco-orange-tint);
+  border: 1px solid rgba(217, 83, 26, 0.28);
+  color: var(--resco-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.capability-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.capability-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.capability-desc {
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.8;
+  font-size: 13px;
   color: var(--text-secondary);
-  font-weight: 400;
-  margin-top: 4px;
+  line-height: 1.55;
+}
+
+@media (max-width: 991px) {
+  .capabilities-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .capabilities-strip {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .brand-statement-section {
+    padding: 32px 0;
+  }
 }
 
 /* ===================================================================
@@ -611,8 +685,11 @@ a {
 
 .how-it-works-header {
   text-align: center;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .steps-timeline {
@@ -635,7 +712,7 @@ a {
 
 .step-number {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--resco-orange);
@@ -788,6 +865,9 @@ a {
 /* ===================================================================
    Section 5: Where It Fits
    =================================================================== */
+/* ===================================================================
+   Section 5: Where It Fits — Full-Width Image + Text Showcase
+   =================================================================== */
 .fits-section {
   background: var(--bg-alt);
   border-top: 1px solid var(--border);
@@ -795,104 +875,266 @@ a {
   padding: var(--section-v) 0;
 }
 
-.fits-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 32px;
+.fits-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  margin-bottom: 40px;
 }
 
-.fit-card {
+.fit-feature-block {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 52px;
+  align-items: center;
   background: var(--bg-white);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  padding: 36px 32px;
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
 }
 
-.fit-icon {
-  width: 48px;
-  height: 48px;
+.fit-feature-block.reverse {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.fit-feature-block.reverse .fit-feature-image-col {
+  order: 2;
+}
+
+.fit-feature-block.reverse .fit-feature-text-col {
+  order: 1;
+}
+
+.fit-feature-image-col {
+  position: relative;
+}
+
+.fit-image-card {
+  position: relative;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #E8E4DD;
+}
+
+.fit-image-card img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.fit-image-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(28, 28, 28, 0.88);
+  color: #FFFFFF;
+  padding: 5px 12px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+}
+
+.fit-feature-text-col {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  color: var(--resco-orange);
+  flex-direction: column;
+  gap: 16px;
 }
 
-.fit-title {
+.fit-kicker {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--resco-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.fit-feature-title {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 10px;
+  line-height: 1.25;
 }
 
-.fit-desc {
+.fit-feature-desc {
   font-family: var(--font-body);
   font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.7;
 }
 
+.fit-feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.fit-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.fit-check-icon {
+  color: var(--resco-orange);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+@media (max-width: 991px) {
+  .fit-feature-block,
+  .fit-feature-block.reverse {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 24px;
+  }
+  .fit-feature-block.reverse .fit-feature-image-col {
+    order: 1;
+  }
+  .fit-feature-block.reverse .fit-feature-text-col {
+    order: 2;
+  }
+  .fit-image-card img {
+    height: 280px;
+  }
+}
+
 /* ===================================================================
-   Section 6: Why RESCO
+   Section 6: Why RESCO — Dark Industrial Feature Section
    =================================================================== */
 .why-resco-section {
-  padding: var(--section-v) 0;
-  background: var(--bg-page);
+  padding: calc(var(--section-v) * 1.1) 0;
+  background: var(--bg-dark-section);
+  color: #FFFFFF;
+  border-top: 1px solid #282828;
+  border-bottom: 1px solid #282828;
+  position: relative;
 }
 
 .why-header-block {
-  max-width: 760px;
+  max-width: 780px;
   margin-bottom: 48px;
+}
+
+.why-header-block .section-label {
+  color: var(--resco-orange);
+}
+
+.why-header-block .section-title {
+  color: #FFFFFF;
 }
 
 .why-body-intro {
   font-family: var(--font-body);
   font-size: 16px;
-  color: var(--text-secondary);
+  color: #A8A8A8;
   line-height: 1.75;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .why-points-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  overflow: hidden;
+  gap: 20px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .why-card {
-  background: var(--bg-white);
-  padding: 32px 28px;
+  background: #1E1E1E;
+  border: 1px solid #2E2E2E;
+  border-radius: var(--r-md);
+  padding: 34px 28px;
+  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+  display: flex;
+  flex-direction: column;
+}
+
+.why-card:hover {
+  border-color: var(--resco-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.why-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
 }
 
 .why-card-num {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--resco-orange);
-  letter-spacing: 0.08em;
-  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+}
+
+.why-card-icon {
+  color: var(--resco-orange);
+  opacity: 0.9;
 }
 
 .why-card-title {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 10px;
+  color: #FFFFFF;
+  margin-bottom: 12px;
   line-height: 1.3;
 }
 
 .why-card-desc {
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.65;
+  color: #B2B2B2;
+  line-height: 1.7;
+}
+
+.why-trust-footer {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid #282828;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.why-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #999999;
+}
+
+.why-trust-badge strong {
+  color: #FFFFFF;
+}
+
+@media (max-width: 991px) {
+  .why-points-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* ===================================================================
@@ -967,8 +1209,11 @@ a {
 
 .process-header {
   text-align: center;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .process-grid {
@@ -1030,8 +1275,11 @@ a {
 
 .commercial-header {
   text-align: center;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .commercial-grid {
@@ -1052,12 +1300,12 @@ a {
 
 .commercial-tag {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--resco-orange);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .commercial-title {

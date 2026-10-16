@@ -22,8 +22,8 @@ export default function ProcessSection() {
   return (
     <section className="process-section">
       <div className="container">
-        <div className="process-header">
-          <div className="section-label">Deployment Pathway</div>
+        <div className="process-header section-header text-center">
+          <span className="section-label">Deployment Pathway</span>
           <h2 className="section-title">Survey, install, handover.</h2>
           <p className="section-subtitle">What happens to a facility manager between signing and running.</p>
         </div>
