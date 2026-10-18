@@ -9,7 +9,7 @@ export default function WhereItFitsSection({ onNavigateSolutions }) {
           <span className="section-label">Property Deployment</span>
           <h2 className="section-title">Built for two kinds of building.</h2>
           <p className="section-subtitle">
-            Tailored vertical logistics for high-occupancy environments where privacy, security, and staff efficiency are non-negotiable.
+            For hotels and residential buildings where small trips run all day.
           </p>
         </div>
 
@@ -20,29 +20,29 @@ export default function WhereItFitsSection({ onNavigateSolutions }) {
               <div className="fit-image-card">
                 <img 
                   src="/images/hotel-delivery.jpg" 
-                  alt="RESCO autonomous robot performing room service delivery in a luxury hotel corridor" 
+                  alt="RESCO robot delivering in a hotel corridor" 
                 />
-                <span className="fit-image-badge">Sector 01 · Luxury Hospitality</span>
+                <span className="fit-image-badge">Hotels</span>
               </div>
             </div>
             <div className="fit-feature-text-col">
-              <span className="fit-kicker">Hotels &amp; Resorts</span>
-              <h3 className="fit-feature-title">Discreet room service, zero attendant delays.</h3>
+              <span className="fit-kicker">Hotels</span>
+              <h3 className="fit-feature-title">Room service and small requests, made without taking staff away.</h3>
               <p className="fit-feature-desc">
-                Room service trays, late-night amenity requests, laundry returns, and midnight toothbrushes. These are the repetitive trips that pull an attendant away from the front desk or guest check-in at the worst possible moments.
+                Room service, late-night requests, laundry returns, forgotten items. The trips that pull an attendant away from a guest at exactly the wrong moment. The robot uses the lift, drives to the door, and telephones the room when it arrives.
               </p>
               <ul className="fit-feature-list">
                 <li>
                   <CheckCircle2 size={18} className="fit-check-icon" />
-                  <span><strong>Zero app friction:</strong> Automatically calls in-room telephone intercom on arrival</span>
+                  <span><strong>Calls the room on arrival:</strong> Guests don't need to download an app.</span>
                 </li>
                 <li>
                   <CheckCircle2 size={18} className="fit-check-icon" />
-                  <span><strong>10 kg payload:</strong> Accommodates dining trays, heavy linen stacks, and amenities</span>
+                  <span><strong>Carries up to 10 kg:</strong> Enough for a room service tray, a stack of towels, or amenities.</span>
                 </li>
                 <li>
                   <CheckCircle2 size={18} className="fit-check-icon" />
-                  <span><strong>Silent floor transit:</strong> Whispers through carpeted corridors without guest disturbance</span>
+                  <span><strong>Runs quietly:</strong> Moves through corridors without disturbing guests in their rooms.</span>
                 </li>
               </ul>
             </div>
@@ -54,29 +54,29 @@ export default function WhereItFitsSection({ onNavigateSolutions }) {
               <div className="fit-image-card">
                 <img 
                   src="/images/residential-delivery.jpg" 
-                  alt="RESCO robot handling parcel delivery in a luxury gated community elevator lobby" 
+                  alt="RESCO robot handling parcel delivery in a residential lobby" 
                 />
-                <span className="fit-image-badge">Sector 02 · Gated Residential</span>
+                <span className="fit-image-badge">Gated communities</span>
               </div>
             </div>
             <div className="fit-feature-text-col">
-              <span className="fit-kicker">Gated Communities &amp; Condos</span>
-              <h3 className="fit-feature-title">Direct doorstep parcels without stranger access.</h3>
+              <span className="fit-kicker">Gated communities</span>
+              <h3 className="fit-feature-title">Parcels and food to the flat door, without delivery agents going up.</h3>
               <p className="fit-feature-desc">
-                With online food and e-commerce parcels arriving around the clock, estate security gates face relentless friction. RESCO receives deliveries at the lobby concierge and transports them directly to apartment doors, keeping outside delivery personnel strictly out of residential towers.
+                Parcels and food arriving at every hour. The robot runs between the lobby or security gate and the flat door, so the delivery agent never goes up and the resident is called instead of answering to a stranger.
               </p>
               <ul className="fit-feature-list">
                 <li>
                   <CheckCircle2 size={18} className="fit-check-icon" />
-                  <span><strong>Resident privacy:</strong> Unknown couriers never enter private residential elevator banks</span>
+                  <span><strong>Keeps corridors private:</strong> Outside delivery riders stay at the gate or lobby.</span>
                 </li>
                 <li>
                   <CheckCircle2 size={18} className="fit-check-icon" />
-                  <span><strong>Automated elevator calling:</strong> Traverses multi-storey apartment towers unaccompanied</span>
+                  <span><strong>Uses the lift on its own:</strong> Moves between floors without anyone pressing buttons.</span>
                 </li>
                 <li>
                   <CheckCircle2 size={18} className="fit-check-icon" />
-                  <span><strong>Secure handover:</strong> Pin-protected compartment opened only by verified resident</span>
+                  <span><strong>Safe handover:</strong> The cabin opens only when the resident answers the call.</span>
                 </li>
               </ul>
             </div>
@@ -89,7 +89,7 @@ export default function WhereItFitsSection({ onNavigateSolutions }) {
             className="arrow-link" 
             onClick={onNavigateSolutions}
           >
-            Explore all property deployment workflows <ArrowRight size={18} />
+            See both in detail <ArrowRight size={18} />
           </button>
         </div>
       </div>

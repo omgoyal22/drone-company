@@ -28,10 +28,10 @@ export default function HowItWorksSection({ onNavigateRobots }) {
   return (
     <section className="how-it-works-section" id="how-it-works">
       <div className="container">
-        <div className="how-it-works-header">
-          <div className="section-label">End-to-End Autonomous Journey</div>
+        <div className="how-it-works-header section-header text-center">
+          <span className="section-label">How It Works</span>
           <h2 className="section-title">One delivery, start to finish.</h2>
-          <p className="section-subtitle">Five seamless steps from dispatch to verified handover.</p>
+          <p className="section-subtitle">From loading the item to reaching the room.</p>
         </div>
 
         <div className="steps-timeline">

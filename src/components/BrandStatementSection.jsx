@@ -5,23 +5,23 @@ export default function BrandStatementSection() {
   const capabilities = [
     {
       icon: <Package size={22} />,
-      title: "10 kg Secure Cabin",
-      desc: "Trays, parcels, linen, and late-night requests in an auto-locking compartment."
+      title: "Carries up to 10 kg",
+      desc: "A tray, a parcel, extra towels or late-night room requests. The cabin locks until arrival."
     },
     {
       icon: <ArrowUpDown size={22} />,
-      title: "Lift Call Interface",
-      desc: "Changes floors unaccompanied using building lift interfaces and IoT relays."
+      title: "Uses the lift on its own",
+      desc: "A module fitted to your lift lets it change floors without anyone pressing buttons."
     },
     {
       icon: <PhoneCall size={22} />,
-      title: "Direct Room Telephone",
-      desc: "Automatically rings the guest room or flat phone on arrival. No app required."
+      title: "Calls the room on arrival",
+      desc: "It rings the room or flat phone directly. The person receiving needs no app."
     },
     {
       icon: <Clock size={22} />,
-      title: "168 Hours / Week",
-      desc: "Continuous round-the-clock operation engineered in Mumbai by PDR Videotronics."
+      title: "Works round the clock",
+      desc: "Runs all 168 hours of the week. Made and supported in Mumbai by PDR Videotronics."
     }
   ];
 

@@ -7,19 +7,19 @@ export default function WhyRescoSection() {
       num: "01",
       icon: <MapPin size={22} />,
       title: "One Indian counterparty",
-      desc: "RESCO is the robotics brand of PDR Videotronics, an established Mumbai manufacturer. You deal directly with an engineering company down the road, not an unverified reseller or an overseas factory."
+      desc: "RESCO is the robotics brand of PDR Videotronics, a Mumbai manufacturer. You deal with a company down the road, not a factory abroad."
     },
     {
       num: "02",
       icon: <Wrench size={22} />,
-      title: "Deployment, not just delivery",
-      desc: "Site survey, elevator interface, corridor mapping, and system commissioning form a single unified scope. The exact obstacles that derail robotics rollouts are eliminated before quotation."
+      title: "Deployment, not delivery",
+      desc: "Survey, lift interface, mapping and commissioning are one scope of work. The things that break rollouts are checked before a unit is quoted."
     },
     {
       num: "03",
       icon: <ShieldCheck size={22} />,
-      title: "Local support that answers",
-      desc: "Round-the-clock remote fleet monitoring combined with locally based field engineers who physically attend your property whenever hardware servicing is required."
+      title: "Support that answers",
+      desc: "Round-the-clock remote monitoring, and engineers who can visit your site when needed."
     }
   ];
 
@@ -30,7 +30,7 @@ export default function WhyRescoSection() {
           <span className="section-label">Execution In India</span>
           <h2 className="section-title">The robot is the easy part.</h2>
           <p className="why-body-intro">
-            Delivery robot projects in India rarely stall because of the machine itself. They stall on a lift contractor who refuses an interface, a Wi-Fi dead spot in an elevator shaft, or an overseas support desk in a foreign time zone. We solved the whole ecosystem.
+            Delivery robot projects in India rarely stall because of the machine. They stall on a lift contractor who will not fit an interface, a Wi-Fi dead spot in a lift lobby, or a support line in another time zone.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export default function WhyRescoSection() {
             <span>Manufactured &amp; supported by <strong>PDR Videotronics (India) Private Limited</strong>, Mumbai</span>
           </div>
           <div className="why-trust-badge">
-            <span>24/7 Operations Centre · Local Spares Depot · Dedicated Property Contact</span>
+            <span>Round-the-clock monitoring · Spares in Mumbai · Dedicated property contact</span>
           </div>
         </div>
       </div>

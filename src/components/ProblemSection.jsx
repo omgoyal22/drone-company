@@ -5,7 +5,7 @@ export default function ProblemSection() {
     <section className="problem-section">
       <div className="container problem-grid">
         <div className="problem-text section-header text-left">
-          <span className="section-label">Staff Allocation Friction</span>
+          <span className="section-label">The Problem</span>
           <h2 className="section-title">The same short walk, fifty times a day.</h2>
           <p className="problem-body">
             Every building runs on small repeated journeys. A tray to 704. A parcel from the security desk to the eleventh floor. A forgotten toothbrush at midnight. Each one takes somebody away from the desk, the kitchen or the gate for ten or fifteen minutes, and none of them needs judgement — only legs. Those are the trips RESCO takes over.
@@ -23,7 +23,7 @@ export default function ProblemSection() {
             height="450" 
           />
           <div className="problem-image-overlay">
-            <span className="problem-caption">Attendants pulled away from guests and resident gates for routine repeated transit.</span>
+            <span className="problem-caption">Staff pulled away from guests and gates for routine trips.</span>
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-export default function HeroSection({ onOpenDemo, onScrollHowItWorks }) {
+export default function HeroSection({ onOpenDemo, onScrollHowItWorks, heroVideoUrl = null }) {
   return (
     <section className="hero-section">
       <div className="container hero-grid">
         <div className="hero-content">
-          <span className="section-label">Autonomous Hospitality &amp; Residential Logistics</span>
+          <span className="section-label">Autonomous indoor delivery</span>
           <h1 className="hero-headline">
             The trip to the door, <span className="hero-headline-accent">made without you.</span>
           </h1>
@@ -39,17 +39,36 @@ export default function HeroSection({ onOpenDemo, onScrollHowItWorks }) {
 
         <div className="hero-visual">
           <div className="hero-image-wrapper">
-            <img 
-              src="/images/hero-robot.jpg" 
-              alt="RESCO robot in a corridor, shot slightly from the front and side, lift doors visible behind it" 
-              width="800" 
-              height="533" 
-            />
+            {heroVideoUrl ? (
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                poster="/images/hero-robot.jpg"
+                className="hero-video-player"
+              >
+                <source src={heroVideoUrl} type="video/mp4" />
+                <img 
+                  src="/images/hero-robot.jpg" 
+                  alt="RESCO robot in a corridor, shot slightly from the front and side, lift doors visible behind it" 
+                  width="800" 
+                  height="533" 
+                />
+              </video>
+            ) : (
+              <img 
+                src="/images/hero-robot.jpg" 
+                alt="RESCO robot in a corridor, shot slightly from the front and side, lift doors visible behind it" 
+                width="800" 
+                height="533" 
+              />
+            )}
             <div className="hero-floating-stat">
               <span className="stat-pulse-dot"></span>
               <div>
-                <div className="floating-stat-text">Active Floor Transit</div>
-                <div className="floating-stat-sub">Integrated lift recall module</div>
+                <div className="floating-stat-text">On delivery</div>
+                <div className="floating-stat-sub">Calling the lift</div>
               </div>
             </div>
           </div>
