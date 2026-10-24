@@ -53,24 +53,18 @@ export default function SolutionsView({ onOpenDemo }) {
   const additionalSectors = [
     {
       title: "Hospitals and clinics",
-      subtitle: "Healthcare Facilities",
       icon: Activity,
-      body: "Consumables, reports and non-clinical items between floors.",
-      note: "Relieves nursing staff from routine specimen and supply transit."
+      body: "Consumables, reports and non-clinical items between floors."
     },
     {
       title: "Corporate offices",
-      subtitle: "Multi-Floor Workplaces",
       icon: Briefcase,
-      body: "Internal mail, packages and cafeteria orders across large floor plates.",
-      note: "Continuous scheduled document and catering courier between floors."
+      body: "Internal mail, packages and cafeteria orders across large floor plates."
     },
     {
       title: "Serviced apartments",
-      subtitle: "Extended Stay Properties",
       icon: KeyRound,
-      body: "Parcel handover from a secure lobby to the door.",
-      note: "Private contactless delivery without unvetted delivery personnel in corridors."
+      body: "Parcel handover from a secure lobby to the door."
     }
   ];
 
@@ -105,7 +99,7 @@ export default function SolutionsView({ onOpenDemo }) {
       <section className="solutions-hero" id="solutions-hero">
         <div className="container">
           <div className="solutions-hero-content section-header text-center">
-            <span className="section-label">Sector Deployments</span>
+            <span className="section-label">Sector deployments</span>
             <h1 className="hero-headline">It does not automate a job. It automates a trip.</h1>
             <p className="hero-subheadline">
               A predictable journey between two fixed points, repeated all day, that currently interrupts somebody doing more valuable work.
@@ -113,10 +107,10 @@ export default function SolutionsView({ onOpenDemo }) {
           </div>
 
           {/* Trip concept visual strip */}
-          <div className="solutions-trip-diagram" aria-label="Trip Automation Diagram">
+          <div className="solutions-trip-diagram" aria-label="Trip automation diagram">
             <div className="trip-node">
               <span className="trip-node-tag">Point A</span>
-              <h4 className="trip-node-title">Dispatch Desk / Dock</h4>
+              <h4 className="trip-node-title">Dispatch desk or dock</h4>
               <p className="trip-node-desc">Front desk, reception, security gate, or service pantry</p>
             </div>
 
@@ -126,13 +120,13 @@ export default function SolutionsView({ onOpenDemo }) {
               </div>
               <div className="transit-label-badge">
                 <Navigation size={14} />
-                <span>Autonomous Multi-Floor Transit</span>
+                <span>Multi-floor route</span>
               </div>
             </div>
 
             <div className="trip-node">
               <span className="trip-node-tag">Point B</span>
-              <h4 className="trip-node-title">Destination Door</h4>
+              <h4 className="trip-node-title">Destination door</h4>
               <p className="trip-node-desc">Guest room, private flat entrance, or department office</p>
             </div>
           </div>
@@ -145,7 +139,7 @@ export default function SolutionsView({ onOpenDemo }) {
       <section className="sector-detail-section" id="hotels">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Hospitality Deployment</span>
+            <span className="section-label">Hospitality</span>
             <h2 className="section-title">Hotels</h2>
             <p className="section-subtitle">
               Room service and guest requests arrive unevenly and rarely when the floor is quiet. Each one costs a return walk, a lift wait and a staff member off the floor. RESCO takes the walk, not the judgement — the order is still made by your people.
@@ -206,7 +200,7 @@ export default function SolutionsView({ onOpenDemo }) {
       <section className="sector-detail-section alt-bg" id="gated-communities">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Residential Towers</span>
+            <span className="section-label">Residential towers</span>
             <h2 className="section-title">Gated communities</h2>
             <p className="section-subtitle">
               Parcels, food and courier returns land at the gate at every hour, and each one ends with somebody walking a lift and a corridor, or a stranger sent to a resident’s door. RESCO runs the inside leg — from the lobby or security desk to the flat door, within the tower. The delivery agent stops at the gate. The resident gets a phone call and opens the cabin.
@@ -267,7 +261,7 @@ export default function SolutionsView({ onOpenDemo }) {
       <section className="also-suited-section" id="also-suited">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Specialised Environments</span>
+            <span className="section-label">Other settings</span>
             <h2 className="section-title">Also suited to</h2>
           </div>
 
@@ -280,13 +274,9 @@ export default function SolutionsView({ onOpenDemo }) {
                     <div className="suited-icon-box">
                       <IconComp size={24} />
                     </div>
-                    <span className="suited-tag">{sector.subtitle}</span>
                   </div>
                   <h3 className="suited-title">{sector.title}</h3>
                   <p className="suited-body">{sector.body}</p>
-                  <div className="suited-footer-note">
-                    <span>{sector.note}</span>
-                  </div>
                 </div>
               );
             })}
@@ -300,7 +290,7 @@ export default function SolutionsView({ onOpenDemo }) {
       <section className="disqualification-section alt-bg" id="where-it-does-not-fit">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Clear Operational Limits</span>
+            <span className="section-label">Operational limits</span>
             <h2 className="section-title">Said plainly, because it saves everybody time.</h2>
           </div>
 
@@ -318,15 +308,6 @@ export default function SolutionsView({ onOpenDemo }) {
               </div>
             ))}
           </div>
-
-          <div className="limits-closing-banner">
-            <div className="closing-banner-content">
-              <AlertTriangle size={22} className="banner-icon" />
-              <p className="banner-text">
-                If your building has any of these, say so early — the survey will find it anyway.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -337,7 +318,7 @@ export default function SolutionsView({ onOpenDemo }) {
         <div className="container">
           <div className="closing-band-box">
             <div className="closing-band-content text-center">
-              <span className="section-label closing-label">Pre-Quotation Feasibility</span>
+              <span className="section-label closing-label">Site survey</span>
               <h2 className="closing-band-title">Which floors could it serve in your building?</h2>
               <p className="closing-band-sub">
                 We confirm exact corridor dimensions, threshold heights, Wi-Fi continuity and lift contractor readiness in a written survey report.

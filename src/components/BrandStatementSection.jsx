@@ -21,7 +21,7 @@ export default function BrandStatementSection() {
     {
       icon: <Clock size={22} />,
       title: "Works round the clock",
-      desc: "Runs all 168 hours of the week. Made and supported in Mumbai by PDR Videotronics."
+      desc: "Recharges at its dock between tasks to cover day and night shifts. Supported in Mumbai by PDR."
     }
   ];
 

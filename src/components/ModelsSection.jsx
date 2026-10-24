@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export default function ModelsSection({ onNavigateRobots }) {
+  const [m6View, setM6View] = useState('logo');
+  const [m5View, setM5View] = useState('logo');
+
   return (
     <section className="models-section" id="fleet-models">
       <div className="container">
         <div className="section-header text-center">
-          <span className="section-label">Fleet Hardware</span>
+          <span className="section-label">Fleet hardware</span>
           <h2 className="section-title">Two machines, the same job.</h2>
           <p className="section-subtitle">Different sizes for different corridors and loads.</p>
         </div>
@@ -16,10 +19,29 @@ export default function ModelsSection({ onNavigateRobots }) {
           <div className="model-card">
             <div className="model-image-holder">
               <img 
-                src="/images/resco-m6.jpg" 
+                src={m6View === 'logo' ? '/images/resco-m6-logo.jpg' : '/images/resco-m6-cabinet.jpg'} 
                 alt="RESCO M6 compact delivery robot" 
+                className="model-card-img"
               />
-              <span className="model-badge">Single Cabin</span>
+              <span className="model-badge">Single cabin</span>
+              <div className="model-thumb-toggle">
+                <button 
+                  type="button" 
+                  className={`thumb-btn ${m6View === 'logo' ? 'active' : ''}`}
+                  onClick={() => setM6View('logo')}
+                  title="Front view with RESCO logo"
+                >
+                  Front (Logo)
+                </button>
+                <button 
+                  type="button" 
+                  className={`thumb-btn ${m6View === 'cabinet' ? 'active' : ''}`}
+                  onClick={() => setM6View('cabinet')}
+                  title="Cabin & touchscreen side"
+                >
+                  Cabin side
+                </button>
+              </div>
             </div>
             <div className="model-details">
               <h3 className="model-name">RESCO M6</h3>
@@ -38,10 +60,29 @@ export default function ModelsSection({ onNavigateRobots }) {
           <div className="model-card">
             <div className="model-image-holder">
               <img 
-                src="/images/resco-m5.jpg" 
+                src={m5View === 'logo' ? '/images/resco-m5-logo.jpg' : '/images/resco-m5-screen.jpg'} 
                 alt="RESCO M5 dual cabin delivery robot with screen" 
+                className="model-card-img"
               />
-              <span className="model-badge">Dual Cabin + Screen</span>
+              <span className="model-badge">Dual cabin + screen</span>
+              <div className="model-thumb-toggle">
+                <button 
+                  type="button" 
+                  className={`thumb-btn ${m5View === 'logo' ? 'active' : ''}`}
+                  onClick={() => setM5View('logo')}
+                  title="Dual cabin view with RESCO logo"
+                >
+                  Cabins (Logo)
+                </button>
+                <button 
+                  type="button" 
+                  className={`thumb-btn ${m5View === 'screen' ? 'active' : ''}`}
+                  onClick={() => setM5View('screen')}
+                  title="21.5-inch vertical display screen"
+                >
+                  21.5&quot; Screen
+                </button>
+              </div>
             </div>
             <div className="model-details">
               <h3 className="model-name">RESCO M5</h3>

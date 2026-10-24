@@ -108,7 +108,7 @@ export function CaseStudyBlock({
       <div className="container">
         <div className="section-header text-center">
           <span className="section-label">{study.tag}</span>
-          <h2 className="section-title">Case Study</h2>
+          <h2 className="section-title">Case study</h2>
         </div>
 
         <div className="case-study-card">
@@ -119,10 +119,10 @@ export function CaseStudyBlock({
 
           <div className="case-study-grid">
             <div className="case-study-col">
-              <h4 className="col-subheading">The Building</h4>
+              <h4 className="col-subheading">The building</h4>
               <p className="col-body">{study.building}</p>
 
-              <h4 className="col-subheading" style={{ marginTop: 20 }}>The Trips It Took Over</h4>
+              <h4 className="col-subheading" style={{ marginTop: 20 }}>The trips it took over</h4>
               <ul className="trips-taken-list">
                 {study.trips.map((trip, idx) => (
                   <li key={idx}>
@@ -134,7 +134,7 @@ export function CaseStudyBlock({
             </div>
 
             <div className="case-study-col quote-col">
-              <h4 className="col-subheading">What the Property Says</h4>
+              <h4 className="col-subheading">What the property says</h4>
               <div className="property-statement-box">
                 <p>&ldquo;{study.statement}&rdquo;</p>
               </div>

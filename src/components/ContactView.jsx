@@ -10,14 +10,9 @@ import {
   ChevronUp, 
   Download, 
   Handshake, 
-  ShieldCheck, 
-  ArrowRight, 
-  Send, 
-  Check, 
-  HelpCircle,
-  FileCheck,
-  X
+  X 
 } from 'lucide-react';
+import DemoForm from './DemoForm';
 
 export default function ContactView() {
   useEffect(() => {
@@ -34,25 +29,6 @@ export default function ContactView() {
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
-
-  // Main Form State
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    city: '',
-    propertyType: 'hotel',
-    floors: '',
-    hasPassengerLifts: 'yes',
-    roomsOrFlats: '',
-    interestType: 'not sure yet',
-    deployTimeline: 'exploring',
-    notes: '',
-    consent: false,
-    hpField: '' // Honeypot spam protection
-  });
 
   // Brochure Form State
   const [brochureSubmitted, setBrochureSubmitted] = useState(false);
@@ -136,15 +112,6 @@ export default function ContactView() {
     }
   ];
 
-  const handleMainSubmit = (e) => {
-    e.preventDefault();
-    if (formData.hpField) {
-      // Spam honeypot triggered
-      return;
-    }
-    setSubmitted(true);
-  };
-
   const handleBrochureSubmit = (e) => {
     e.preventDefault();
     setBrochureSubmitted(true);
@@ -165,7 +132,7 @@ export default function ContactView() {
       <section className="contact-hero" id="contact-hero">
         <div className="container">
           <div className="contact-hero-content section-header text-center">
-            <span className="section-label">On-Site Demonstration &amp; Survey</span>
+            <span className="section-label">On-site demonstration &amp; survey</span>
             <h1 className="hero-headline">See it in your own building.</h1>
             <p className="hero-subheadline">
               Tell us about the property and we will come back with what the robot can do there — and what it cannot.
@@ -175,308 +142,12 @@ export default function ContactView() {
       </section>
 
       {/* ===================================================================
-          Section 2 — The Form
+          Section 2 — The Form (Unified DemoForm)
           =================================================================== */}
       <section className="contact-form-section" id="booking-form">
         <div className="container">
           <div className="contact-main-card">
-            {submitted ? (
-              <div className="submission-thankyou-state" id="submissionThankYou">
-                <div className="thankyou-icon-box">
-                  <CheckCircle2 size={56} className="thankyou-check" />
-                </div>
-                <h2 className="thankyou-title">Demo &amp; Survey Request Received</h2>
-                <p className="thankyou-body">
-                  Thank you, <strong>{formData.name}</strong>. Your enquiry for <strong>{formData.company || 'your property'}</strong> has been registered with our Mumbai engineering office.
-                </p>
-                <div className="thankyou-details-box">
-                  <div className="thankyou-row">
-                    <span className="thankyou-label">Confirmation Email:</span>
-                    <span className="thankyou-val">{formData.email}</span>
-                  </div>
-                  <div className="thankyou-row">
-                    <span className="thankyou-label">Property Type:</span>
-                    <span className="thankyou-val">{formData.propertyType}</span>
-                  </div>
-                  <div className="thankyou-row">
-                    <span className="thankyou-label">City:</span>
-                    <span className="thankyou-val">{formData.city}</span>
-                  </div>
-                  <div className="thankyou-row">
-                    <span className="thankyou-label">Next Step:</span>
-                    <span className="thankyou-val">A senior robotics surveyor will call you to review floor parameters.</span>
-                  </div>
-                </div>
-                <button 
-                  type="button" 
-                  className="btn btn-outline" 
-                  onClick={() => setSubmitted(false)}
-                >
-                  Submit details for another building
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleMainSubmit} className="contact-full-form">
-                {/* Honeypot field (hidden from genuine users) */}
-                <input 
-                  type="text" 
-                  name="website_url" 
-                  value={formData.hpField} 
-                  onChange={(e) => setFormData({ ...formData, hpField: e.target.value })} 
-                  style={{ display: 'none' }} 
-                  tabIndex="-1" 
-                  autoComplete="off" 
-                />
-
-                <div className="form-section-header">
-                  <h3 className="form-legend-title">Property &amp; Operational Information</h3>
-                  <p className="form-legend-desc">All fields marked with an asterisk (*) are required.</p>
-                </div>
-
-                <div className="form-grid-2">
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctName">Your Name *</label>
-                    <input 
-                      type="text" 
-                      id="ctName" 
-                      className="form-control" 
-                      placeholder="e.g. Vikram Mehta" 
-                      required 
-                      value={formData.name} 
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctCompany">Company or property name *</label>
-                    <input 
-                      type="text" 
-                      id="ctCompany" 
-                      className="form-control" 
-                      placeholder="e.g. Grand Horizon Hotel / Tower B" 
-                      required 
-                      value={formData.company} 
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })} 
-                    />
-                  </div>
-                </div>
-
-                <div className="form-grid-3">
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctEmail">Email *</label>
-                    <input 
-                      type="email" 
-                      id="ctEmail" 
-                      className="form-control" 
-                      placeholder="v.mehta@property.com" 
-                      required 
-                      value={formData.email} 
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctPhone">Phone *</label>
-                    <input 
-                      type="tel" 
-                      id="ctPhone" 
-                      className="form-control" 
-                      placeholder="+91 98200 00000" 
-                      required 
-                      value={formData.phone} 
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctCity">City *</label>
-                    <input 
-                      type="text" 
-                      id="ctCity" 
-                      className="form-control" 
-                      placeholder="e.g. Mumbai, Bengaluru, Delhi NCR" 
-                      required 
-                      value={formData.city} 
-                      onChange={(e) => setFormData({ ...formData, city: e.target.value })} 
-                    />
-                  </div>
-                </div>
-
-                {/* Property Type Radio Group */}
-                <div className="form-group form-choice-block">
-                  <label className="form-label">Type of property *</label>
-                  <div className="choice-pills-row">
-                    {[
-                      { id: 'hotel', label: 'Hotel' },
-                      { id: 'gated community', label: 'Gated community' },
-                      { id: 'hospital', label: 'Hospital' },
-                      { id: 'office', label: 'Office' },
-                      { id: 'other', label: 'Other' }
-                    ].map((opt) => (
-                      <label 
-                        key={opt.id} 
-                        className={`choice-pill ${formData.propertyType === opt.id ? 'active' : ''}`}
-                      >
-                        <input 
-                          type="radio" 
-                          name="propertyType" 
-                          value={opt.id} 
-                          checked={formData.propertyType === opt.id} 
-                          onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })} 
-                        />
-                        <span>{opt.label}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="form-grid-3">
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctFloors">Number of floors the robot would serve *</label>
-                    <input 
-                      type="text" 
-                      id="ctFloors" 
-                      className="form-control" 
-                      placeholder="e.g. 12 floors" 
-                      required
-                      value={formData.floors} 
-                      onChange={(e) => setFormData({ ...formData, floors: e.target.value })} 
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="ctRooms">Rooms or flats — a range is fine *</label>
-                    <input 
-                      type="text" 
-                      id="ctRooms" 
-                      className="form-control" 
-                      placeholder="e.g. 150 – 200 rooms" 
-                      required
-                      value={formData.roomsOrFlats} 
-                      onChange={(e) => setFormData({ ...formData, roomsOrFlats: e.target.value })} 
-                    />
-                  </div>
-
-                  {/* Passenger Lifts */}
-                  <div className="form-group">
-                    <label className="form-label">Does the building have passenger lifts? *</label>
-                    <div className="choice-pills-row">
-                      {[
-                        { id: 'yes', label: 'Yes' },
-                        { id: 'no', label: 'No' },
-                        { id: 'not sure', label: 'Not sure' }
-                      ].map((opt) => (
-                        <label 
-                          key={opt.id} 
-                          className={`choice-pill ${formData.hasPassengerLifts === opt.id ? 'active' : ''}`}
-                        >
-                          <input 
-                            type="radio" 
-                            name="hasPassengerLifts" 
-                            value={opt.id} 
-                            checked={formData.hasPassengerLifts === opt.id} 
-                            onChange={(e) => setFormData({ ...formData, hasPassengerLifts: e.target.value })} 
-                          />
-                          <span>{opt.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-grid-2">
-                  {/* Interested in */}
-                  <div className="form-group">
-                    <label className="form-label">Interested in *</label>
-                    <div className="choice-pills-row">
-                      {[
-                        { id: 'purchase', label: 'Purchase' },
-                        { id: 'subscription', label: 'Subscription' },
-                        { id: 'not sure yet', label: 'Not sure yet' }
-                      ].map((opt) => (
-                        <label 
-                          key={opt.id} 
-                          className={`choice-pill ${formData.interestType === opt.id ? 'active' : ''}`}
-                        >
-                          <input 
-                            type="radio" 
-                            name="interestType" 
-                            value={opt.id} 
-                            checked={formData.interestType === opt.id} 
-                            onChange={(e) => setFormData({ ...formData, interestType: e.target.value })} 
-                          />
-                          <span>{opt.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* When are you looking to deploy? */}
-                  <div className="form-group">
-                    <label className="form-label">When are you looking to deploy? *</label>
-                    <div className="choice-pills-row">
-                      {[
-                        { id: 'now', label: 'Now' },
-                        { id: '3 months', label: '3 months' },
-                        { id: '6 months', label: '6 months' },
-                        { id: 'exploring', label: 'Exploring' }
-                      ].map((opt) => (
-                        <label 
-                          key={opt.id} 
-                          className={`choice-pill ${formData.deployTimeline === opt.id ? 'active' : ''}`}
-                        >
-                          <input 
-                            type="radio" 
-                            name="deployTimeline" 
-                            value={opt.id} 
-                            checked={formData.deployTimeline === opt.id} 
-                            onChange={(e) => setFormData({ ...formData, deployTimeline: e.target.value })} 
-                          />
-                          <span>{opt.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="ctNotes">Anything else</label>
-                  <textarea 
-                    id="ctNotes" 
-                    className="form-control" 
-                    rows={3} 
-                    placeholder="Tell us about special corridor carpets, heavy peak delivery hours, or lift contractor details..." 
-                    value={formData.notes} 
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })} 
-                  />
-                </div>
-
-                {/* Consent checkbox */}
-                <div className="form-consent-box">
-                  <label className="consent-checkbox-label">
-                    <input 
-                      type="checkbox" 
-                      required 
-                      checked={formData.consent} 
-                      onChange={(e) => setFormData({ ...formData, consent: e.target.checked })} 
-                      id="ctConsentCheckbox"
-                    />
-                    <span>
-                      I agree to be contacted about this enquiry. <a href="#privacy" onClick={(e) => e.preventDefault()} className="privacy-link">Privacy Policy</a>
-                    </span>
-                  </label>
-                </div>
-
-                <div className="form-submit-row">
-                  <button type="submit" className="btn btn-primary btn-lg" id="contactBookDemoSubmit">
-                    Book a demo
-                  </button>
-                  <span className="submit-security-note">
-                    <ShieldCheck size={16} /> Encrypted transmission · Handled directly by PDR Videotronics, Mumbai
-                  </span>
-                </div>
-              </form>
-            )}
+            <DemoForm isModal={false} />
           </div>
         </div>
       </section>
@@ -487,14 +158,13 @@ export default function ContactView() {
       <section className="contact-next-section alt-bg" id="what-happens-next">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Subsequent Steps</span>
             <h2 className="section-title">What happens next</h2>
           </div>
 
           <div className="next-steps-grid">
             <div className="next-step-card">
               <span className="next-step-num">1</span>
-              <h3 className="next-step-title">Initial Scope Call</h3>
+              <h3 className="next-step-title">Initial call</h3>
               <p className="next-step-desc">
                 We call to understand the building — lifts, floors, and the trips you want covered.
               </p>
@@ -502,7 +172,7 @@ export default function ContactView() {
 
             <div className="next-step-card">
               <span className="next-step-num">2</span>
-              <h3 className="next-step-title">On-Site Route Survey</h3>
+              <h3 className="next-step-title">On-site route survey</h3>
               <p className="next-step-desc">
                 We survey the route with your engineering team and your lift contractor.
               </p>
@@ -510,7 +180,7 @@ export default function ContactView() {
 
             <div className="next-step-card">
               <span className="next-step-num">3</span>
-              <h3 className="next-step-title">Written Statement &amp; Quote</h3>
+              <h3 className="next-step-title">Written statement and quotation</h3>
               <p className="next-step-desc">
                 You get a written statement of which floors can be served, and a quotation.
               </p>
@@ -623,8 +293,8 @@ export default function ContactView() {
         <div className="container">
           <div className="details-box">
             <div className="details-header section-header text-center">
-              <span className="section-label">Corporate Headquarters</span>
-              <h2 className="section-title">Direct Contact</h2>
+              <span className="section-label">Headquarters</span>
+              <h2 className="section-title">Direct contact</h2>
               <p className="details-address-text">
                 PDR Videotronics (India) Private Limited, 99 Old Prabhadevi Road, Mumbai 400 025 · +91 22 2430 6494 · +91 86910 00897 · info@pdrworld.com
               </p>
@@ -651,11 +321,7 @@ export default function ContactView() {
       <section className="contact-faq-section" id="questions">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Clear Answers</span>
             <h2 className="section-title">Questions</h2>
-            <p className="section-subtitle">
-              Common operational and deployment considerations addressed directly.
-            </p>
           </div>
 
           <div className="faq-accordion-wrapper">
@@ -696,7 +362,7 @@ export default function ContactView() {
             <div className="modal-header">
               <div>
                 <span className="section-label">Channel Cooperation</span>
-                <h3 className="modal-title">Partner &amp; Reseller Enquiry</h3>
+                <h3 className="modal-title">Partner &amp; reseller enquiry</h3>
               </div>
               <button 
                 type="button" 
@@ -712,7 +378,7 @@ export default function ContactView() {
               {partnerSubmitted ? (
                 <div className="partner-submitted-box">
                   <CheckCircle2 size={48} className="partner-check" />
-                  <h4>Partner Request Submitted</h4>
+                  <h4>Partner request submitted</h4>
                   <p>
                     Thank you, <strong>{partnerData.name}</strong>. Our channel distribution team will review your market details for <strong>{partnerData.company}</strong> and contact you directly.
                   </p>
@@ -731,7 +397,7 @@ export default function ContactView() {
                 <form onSubmit={handlePartnerSubmit}>
                   <div className="form-grid-2">
                     <div className="form-group">
-                      <label className="form-label">Contact Name *</label>
+                      <label className="form-label">Contact name *</label>
                       <input 
                         type="text" 
                         required 
@@ -741,7 +407,7 @@ export default function ContactView() {
                       />
                     </div>
                     <div className="form-group">
-                      <label className="form-label">Firm / Partner Company *</label>
+                      <label className="form-label">Firm or partner company *</label>
                       <input 
                         type="text" 
                         required 
@@ -776,19 +442,19 @@ export default function ContactView() {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Primary Region / Market *</label>
+                    <label className="form-label">Primary region or market *</label>
                     <input 
                       type="text" 
                       required 
                       className="form-control" 
-                      placeholder="e.g. West India Hospitality / South India Facility Management" 
+                      placeholder="e.g. West India hospitality / South India facility management" 
                       value={partnerData.market} 
                       onChange={(e) => setPartnerData({ ...partnerData, market: e.target.value })} 
                     />
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Client Type &amp; Portfolio Notes</label>
+                    <label className="form-label">Client type &amp; portfolio notes</label>
                     <textarea 
                       rows={3} 
                       className="form-control" 
@@ -800,7 +466,7 @@ export default function ContactView() {
 
                   <div className="modal-actions">
                     <button type="submit" className="btn btn-primary btn-lg">
-                      Submit Partner Enquiry
+                      Submit partner enquiry
                     </button>
                   </div>
                 </form>

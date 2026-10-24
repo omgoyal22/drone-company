@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   CheckCircle2, 
   ArrowRight, 
@@ -15,9 +15,12 @@ import {
 } from 'lucide-react';
 
 export default function RobotsView({ onOpenDemo }) {
+  const [m6View, setM6View] = useState('logo');
+  const [m5View, setM5View] = useState('logo');
+
   useEffect(() => {
-    // Set page title and meta description per specification
-    document.title = "RESCO M6 Delivery Robot — How It Works and Full Specification";
+    // Set page title and meta description covering both models
+    document.title = "RESCO Delivery Robots — M6 & M5 Specifications and How They Work";
     
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -25,7 +28,7 @@ export default function RobotsView({ onOpenDemo }) {
       metaDesc.name = 'description';
       document.head.appendChild(metaDesc);
     }
-    metaDesc.content = "Specification, navigation, lift integration and building requirements for the RESCO M6 autonomous indoor delivery robot.";
+    metaDesc.content = "Specifications, navigation, lift integration and building requirements for the RESCO M6 and M5 autonomous indoor delivery robots.";
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -98,16 +101,6 @@ export default function RobotsView({ onOpenDemo }) {
     }
   ];
 
-  const suitabilityItems = [
-    "Passenger lifts that can take an interface module, and a lift contractor willing to fit it — without this, the robot serves one floor.",
-    "Network coverage along the whole route, including inside the lift car.",
-    "A power point at the dock, on a circuit that is not switched off at night.",
-    "A room or flat telephone system, so the robot can announce its arrival.",
-    "A step-free route — thresholds no higher than 2.5 cm and slopes no steeper than 12° for the M6; 2 cm and 10° for the M5.",
-    "Corridors wide enough for a 500 mm machine to turn, not merely to fit — 550 mm for the M5.",
-    "Someone at the property who owns the deployment and can arrange lift access and mapping windows."
-  ];
-
   return (
     <div className="robots-page-view">
       {/* ===================================================================
@@ -116,7 +109,7 @@ export default function RobotsView({ onOpenDemo }) {
       <section className="robots-hero">
         <div className="container">
           <div className="robots-hero-content section-header text-center">
-            <span className="section-label">Fleet Hardware</span>
+            <span className="section-label">Fleet hardware</span>
             <h1 className="hero-headline">The machines.</h1>
             <p className="hero-subheadline">
               Two delivery robots for indoor use. Both carry something from one point in a building to another, on their own, and hand it over. One has a single cabin, the other two.
@@ -152,10 +145,29 @@ export default function RobotsView({ onOpenDemo }) {
             <div className="model-editorial-col">
               <div className="model-photo-box">
                 <img 
-                  src="/images/resco-m6.jpg" 
-                  alt="RESCO M6 compact delivery robot in a building corridor" 
+                  src={m6View === 'logo' ? '/images/resco-m6-logo.jpg' : '/images/resco-m6-cabinet.jpg'} 
+                  alt={m6View === 'logo' ? 'RESCO M6 front view with RESCO logo and sensor array' : 'RESCO M6 delivery side with single cabin door and touchscreen'} 
+                  className="model-main-photo"
                 />
-                <span className="model-photo-tag">Compact 500 mm Footprint</span>
+                <span className="model-photo-tag">
+                  {m6View === 'logo' ? 'Front view · RESCO logo' : 'Delivery side · Cabin & touchscreen'}
+                </span>
+                <div className="model-view-controls">
+                  <button 
+                    type="button" 
+                    className={`model-view-btn ${m6View === 'logo' ? 'active' : ''}`}
+                    onClick={() => setM6View('logo')}
+                  >
+                    Front (RESCO logo)
+                  </button>
+                  <button 
+                    type="button" 
+                    className={`model-view-btn ${m6View === 'cabinet' ? 'active' : ''}`}
+                    onClick={() => setM6View('cabinet')}
+                  >
+                    Delivery cabin side
+                  </button>
+                </div>
               </div>
               <div className="model-body-text">
                 <p>
@@ -197,10 +209,29 @@ export default function RobotsView({ onOpenDemo }) {
             <div className="model-editorial-col">
               <div className="model-photo-box">
                 <img 
-                  src="/images/resco-m5.jpg" 
-                  alt="RESCO M5 dual cabin delivery robot with 21.5 inch vertical screen" 
+                  src={m5View === 'logo' ? '/images/resco-m5-logo.jpg' : '/images/resco-m5-screen.jpg'} 
+                  alt={m5View === 'logo' ? 'RESCO M5 dual cabin delivery robot with RESCO logo' : 'RESCO M5 reverse side with 21.5-inch vertical display screen'} 
+                  className="model-main-photo"
                 />
-                <span className="model-photo-tag">Dual Cabins + 21.5&quot; Display</span>
+                <span className="model-photo-tag">
+                  {m5View === 'logo' ? 'Dual cabins · RESCO logo' : 'Reverse side · 21.5" screen'}
+                </span>
+                <div className="model-view-controls">
+                  <button 
+                    type="button" 
+                    className={`model-view-btn ${m5View === 'logo' ? 'active' : ''}`}
+                    onClick={() => setM5View('logo')}
+                  >
+                    Dual cabins (RESCO logo)
+                  </button>
+                  <button 
+                    type="button" 
+                    className={`model-view-btn ${m5View === 'screen' ? 'active' : ''}`}
+                    onClick={() => setM5View('screen')}
+                  >
+                    21.5&quot; Display screen
+                  </button>
+                </div>
               </div>
               <div className="model-body-text">
                 <p>
@@ -270,7 +301,7 @@ export default function RobotsView({ onOpenDemo }) {
       <section className="navigation-section alt-bg" id="navigation">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Navigation &amp; Sensing</span>
+            <span className="section-label">Navigation and sensors</span>
             <h2 className="section-title">How it finds its way</h2>
           </div>
 
@@ -321,7 +352,7 @@ export default function RobotsView({ onOpenDemo }) {
       <section className="lifts-section" id="lifts">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Multi-Floor Transit</span>
+            <span className="section-label">Lift integration</span>
             <h2 className="section-title">A robot cannot press a button.</h2>
           </div>
 
@@ -338,7 +369,7 @@ export default function RobotsView({ onOpenDemo }) {
               <div className="lifts-callout-icon">
                 <ArrowUpDown size={32} />
               </div>
-              <h3 className="lifts-callout-title">The Lift Interface Scope</h3>
+              <h3 className="lifts-callout-title">The lift interface</h3>
               <ul className="lifts-callout-list">
                 <li>Fitted directly into your lift control system</li>
                 <li>Operates with your lift contractor&apos;s sign-off</li>
@@ -356,7 +387,7 @@ export default function RobotsView({ onOpenDemo }) {
       <section className="charging-security-section alt-bg" id="charging-security">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Docking &amp; Records</span>
+            <span className="section-label">Docking and records</span>
             <h2 className="section-title">Charging, security and records.</h2>
           </div>
 
@@ -368,7 +399,6 @@ export default function RobotsView({ onOpenDemo }) {
                   <BatteryCharging size={24} />
                 </div>
                 <div>
-                  <span className="section-label">Power &amp; Docking</span>
                   <h3 className="info-block-title">Charging</h3>
                 </div>
               </div>
@@ -384,7 +414,6 @@ export default function RobotsView({ onOpenDemo }) {
                   <ShieldCheck size={24} />
                 </div>
                 <div>
-                  <span className="section-label">Integrity &amp; Auditing</span>
                   <h3 className="info-block-title">Security and records</h3>
                 </div>
               </div>
@@ -466,30 +495,14 @@ export default function RobotsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 9 — Is your building suitable?
+          Closing Survey Band
           =================================================================== */}
-      <section className="suitability-section alt-bg" id="suitability">
+      <section className="robots-closing-band alt-bg" id="robots-survey-cta">
         <div className="container">
-          <div className="suitability-header section-header text-center">
-            <span className="section-label">Property Pre-requisites</span>
-            <h2 className="section-title">Seven things that decide it.</h2>
-            <p className="suitability-intro">
-              It takes five minutes to answer these, and they tell you more than any brochure.
-            </p>
-          </div>
-
-          <div className="suitability-list">
-            {suitabilityItems.map((text, idx) => (
-              <div className="suitability-item" key={idx}>
-                <span className="suitability-num">0{idx + 1}</span>
-                <p className="suitability-text">{text}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="suitability-cta-band">
-            <p className="suitability-cta-note">
-              We confirm all of this in a written survey report before you commit to anything.
+          <div className="section-header text-center" style={{ marginBottom: 24 }}>
+            <h2 className="section-title">See which model fits your building</h2>
+            <p className="section-subtitle" style={{ margin: '0 auto 28px' }}>
+              We confirm all corridor dimensions, thresholds and lift compatibility in a written survey report before you commit to anything.
             </p>
             <button 
               type="button" 

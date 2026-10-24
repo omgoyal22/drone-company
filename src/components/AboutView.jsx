@@ -63,7 +63,7 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
       <section className="about-hero" id="about-hero">
         <div className="container">
           <div className="about-hero-content section-header text-center">
-            <span className="section-label">Service Robotics · Mumbai</span>
+            <span className="section-label">Service robotics · Mumbai</span>
             <h1 className="hero-headline">Robots that have to work on a Tuesday afternoon.</h1>
             <p className="hero-subheadline">
               RESCO is the service robotics brand of PDR Videotronics (India) Private Limited, a Mumbai company that has been supplying Indian industry since [year — PDR to confirm].
@@ -73,7 +73,7 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
           <div className="about-hero-card">
             <div className="about-hero-grid">
               <div className="about-identity-block">
-                <span className="identity-tag">Operating Entity</span>
+                <span className="identity-tag">Operating entity</span>
                 <h3 className="identity-company">PDR Videotronics (India) Private Limited</h3>
                 <p className="identity-desc">
                   Engineering, deployment, lift interface coordination, and 24/7 technical lifecycle support for autonomous commercial delivery robotics across India.
@@ -82,15 +82,15 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
               <div className="about-metrics-strip">
                 <div className="metric-box">
                   <span className="metric-num">Mumbai</span>
-                  <span className="metric-label">HQ &amp; Engineering Center</span>
+                  <span className="metric-label">HQ and engineering centre</span>
                 </div>
                 <div className="metric-box">
                   <span className="metric-num">End-to-End</span>
-                  <span className="metric-label">Survey to Live Handover</span>
+                  <span className="metric-label">Survey to live handover</span>
                 </div>
                 <div className="metric-box">
                   <span className="metric-num">24 / 7</span>
-                  <span className="metric-label">Remote Diagnostic Support</span>
+                  <span className="metric-label">Remote diagnostic support</span>
                 </div>
               </div>
             </div>
@@ -104,18 +104,14 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
       <section className="about-purpose-section alt-bg" id="why-we-are-doing-this">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Context &amp; Purpose</span>
             <h2 className="section-title">Why we are doing this</h2>
           </div>
 
           <div className="purpose-card">
             <div className="purpose-quote-mark">&ldquo;</div>
             <p className="purpose-body">
-              Buildings in India are being built faster than they can be staffed, and the work that suffers first is the work nobody wants to schedule — the tenth trip to the eleventh floor. A machine that takes that trip does not replace a job. It gives back the hours that were being spent walking.
+              Every day, dozens of delivery riders walk into buildings, through lifts and corridors, to people&apos;s front doors. Each one is a stranger inside. And the parcel still waits while a rider searches for the right flat or rushes to his next order. Our robot stops riders at the gate and takes the delivery to the door itself, so strangers stay out and deliveries arrive on time.
             </p>
-            <div className="purpose-footer">
-              <span className="purpose-author">RESCO Service Robotics Philosophy</span>
-            </div>
           </div>
         </div>
       </section>
@@ -126,8 +122,8 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
       <section className="about-process-section" id="how-we-work">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Methodology</span>
-            <h2 className="section-title">How we work</h2>
+            <span className="section-label">How we work</span>
+            <h2 className="section-title">From survey to live handover</h2>
           </div>
 
           <div className="process-cards-grid">
@@ -157,47 +153,13 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
       <section className="about-support-section alt-bg" id="support">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-label">Lifecycle Reliability</span>
             <h2 className="section-title">Support</h2>
           </div>
 
-          <div className="support-split-card">
-            <div className="support-content-col">
-              <p className="support-primary-body">
-                Remote monitoring runs around the clock, and faults that a robot can see itself — a wrong floor, an unexpected stop, a blocked route — raise themselves rather than waiting for somebody to notice. When a site visit is needed, we send people.
-              </p>
-              
-              <div className="support-features-list">
-                <div className="support-feature-item">
-                  <span className="feature-dot"></span>
-                  <div>
-                    <h4 className="feature-title">Self-Raising Diagnostics</h4>
-                    <p className="feature-desc">Telemetry alerts trigger before property management or guests report an issue.</p>
-                  </div>
-                </div>
-                <div className="support-feature-item">
-                  <span className="feature-dot"></span>
-                  <div>
-                    <h4 className="feature-title">Direct Field Engineering</h4>
-                    <p className="feature-desc">Dedicated Mumbai-based service technicians for hardware and lift interface servicing.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="support-badge-col">
-              <div className="support-badge-box">
-                <Cpu size={36} className="support-badge-icon" />
-                <h4 className="support-badge-heading">Real-Time Cloud Telemetry</h4>
-                <p className="support-badge-text">
-                  Continuous status monitoring, remote firmware updates, and direct incident response.
-                </p>
-                <div className="support-status-indicator">
-                  <span className="status-live-dot"></span>
-                  <span>Active Network Monitoring</span>
-                </div>
-              </div>
-            </div>
+          <div className="support-card-clean">
+            <p className="support-primary-body">
+              Remote monitoring runs around the clock, and faults that a robot can see itself — a wrong floor, an unexpected stop, a blocked route — raise themselves rather than waiting for somebody to notice. When a site visit is needed, we send people.
+            </p>
           </div>
         </div>
       </section>
