@@ -38,10 +38,11 @@ export default function CommercialSection({ onOpenDemo }) {
           </p>
           <button 
             type="button" 
-            className="btn btn-outline btn-lg" 
+            className="btn btn-primary btn-lg" 
             onClick={onOpenDemo}
+            id="commercialBookDemoBtn"
           >
-            Ask for a quotation
+            Book a demo
           </button>
         </div>
       </div>

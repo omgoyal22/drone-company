@@ -15,7 +15,8 @@ import {
 } from 'lucide-react';
 
 export default function RobotsView({ onOpenDemo }) {
-  const [m6View, setM6View] = useState('logo');
+  // M6 default photo set to 'cabinet' (Task 11)
+  const [m6View, setM6View] = useState('cabinet');
   const [m5View, setM5View] = useState('logo');
 
   useEffect(() => {
@@ -30,16 +31,25 @@ export default function RobotsView({ onOpenDemo }) {
     }
     metaDesc.content = "Specifications, navigation, lift integration and building requirements for the RESCO M6 and M5 autonomous indoor delivery robots.";
     
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Check if hash exists to scroll directly to it (e.g. #comparison)
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, []);
 
+  // Task 14: Remove "Sensing" row from m6Specs
   const m6Specs = [
     { label: "Dimensions", value: "500 × 500 × 950 mm" },
     { label: "Weight", value: "55 kg" },
     { label: "Rated load", value: "10 kg" },
     { label: "Cabin", value: "280 × 280 × 330 mm, electric door" },
     { label: "Navigation", value: "SLAM, autonomous obstacle avoidance" },
-    { label: "Sensing", value: "High-precision TOF radar and RGBD binocular camera" },
     { label: "Display", value: "10.1 inch touchscreen, 1920 × 1080" },
     { label: "Operating system", value: "Android / ROS" },
     { label: "Speed", value: "0 – 1.5 m/s, adjustable" },
@@ -51,6 +61,7 @@ export default function RobotsView({ onOpenDemo }) {
     { label: "Optional", value: "In-cabin object recognition" }
   ];
 
+  // Task 14: Remove "Sensing" row from m5Specs
   const m5Specs = [
     { label: "Dimensions", value: "550 × 550 × 1000 mm" },
     { label: "Weight", value: "65 kg" },
@@ -58,7 +69,6 @@ export default function RobotsView({ onOpenDemo }) {
     { label: "Cabins", value: "Two — 335 × 300 × 180 mm and 335 × 300 × 250 mm" },
     { label: "Screen", value: "21.5 inch, 1920 × 1080" },
     { label: "Navigation", value: "SLAM" },
-    { label: "Sensing", value: "TOF radar" },
     { label: "Operating system", value: "Android / ROS" },
     { label: "Gradeability", value: "10° slope · 2 cm step" },
     { label: "Endurance", value: "12 hours" },
@@ -68,6 +78,7 @@ export default function RobotsView({ onOpenDemo }) {
     { label: "Optional", value: "Custom exterior finish in the property’s own branding" }
   ];
 
+  // Task 15: Add "Battery" row, with M6 7–9 hours and M5 12 hours
   const comparisonRows = [
     {
       feature: "Cabins",
@@ -78,6 +89,11 @@ export default function RobotsView({ onOpenDemo }) {
       feature: "Rated load",
       m6: "10 kg",
       m5: "15 kg"
+    },
+    {
+      feature: "Battery",
+      m6: "7–9 hours",
+      m5: "12 hours"
     },
     {
       feature: "Width",
@@ -119,7 +135,7 @@ export default function RobotsView({ onOpenDemo }) {
           <div className="robots-hero-image-wrapper">
             <img 
               src="/images/both-robots.jpg" 
-              alt="RESCO M6 and RESCO M5 delivery robots side by side against a plain studio background, full height" 
+              alt="RESCO M6 and RESCO M5 autonomous indoor delivery robots" 
               width="1200"
               height="675"
             />
@@ -146,26 +162,24 @@ export default function RobotsView({ onOpenDemo }) {
               <div className="model-photo-box">
                 <img 
                   src={m6View === 'logo' ? '/images/resco-m6-logo.jpg' : '/images/resco-m6-cabinet.jpg'} 
-                  alt={m6View === 'logo' ? 'RESCO M6 front view with RESCO logo and sensor array' : 'RESCO M6 delivery side with single cabin door and touchscreen'} 
+                  alt={m6View === 'logo' ? 'RESCO M6 delivery robot front view' : 'RESCO M6 delivery robot cabin side with touchscreen'} 
                   className="model-main-photo"
                 />
-                <span className="model-photo-tag">
-                  {m6View === 'logo' ? 'Front view · RESCO logo' : 'Delivery side · Cabin & touchscreen'}
-                </span>
+                {/* Task 10: Corner tag removed */}
                 <div className="model-view-controls">
                   <button 
                     type="button" 
                     className={`model-view-btn ${m6View === 'logo' ? 'active' : ''}`}
                     onClick={() => setM6View('logo')}
                   >
-                    Front (RESCO logo)
+                    Front
                   </button>
                   <button 
                     type="button" 
                     className={`model-view-btn ${m6View === 'cabinet' ? 'active' : ''}`}
                     onClick={() => setM6View('cabinet')}
                   >
-                    Delivery cabin side
+                    Cabin side
                   </button>
                 </div>
               </div>
@@ -173,8 +187,9 @@ export default function RobotsView({ onOpenDemo }) {
                 <p>
                   Think of it as a lockable box on a wheeled base that knows the floor plan of your building, sees what is in front of it, and can ask the lift to take it to another floor.
                 </p>
+                {/* Task 12: M6 description replaced */}
                 <p>
-                  Staff put an item in the cabin and enter a destination. It closes and locks, drives the corridor avoiding people and trolleys, calls the lift, rides to the floor, drives to the door and telephones the room. The recipient opens the cabin at the touchscreen, takes the item, and the robot returns to its dock.
+                  Staff load it and enter a room number; it does the rest and returns to its dock.
                 </p>
               </div>
             </div>
@@ -210,32 +225,31 @@ export default function RobotsView({ onOpenDemo }) {
               <div className="model-photo-box">
                 <img 
                   src={m5View === 'logo' ? '/images/resco-m5-logo.jpg' : '/images/resco-m5-screen.jpg'} 
-                  alt={m5View === 'logo' ? 'RESCO M5 dual cabin delivery robot with RESCO logo' : 'RESCO M5 reverse side with 21.5-inch vertical display screen'} 
+                  alt={m5View === 'logo' ? 'RESCO M5 dual cabin delivery robot front view' : 'RESCO M5 delivery robot 21.5-inch display screen'} 
                   className="model-main-photo"
                 />
-                <span className="model-photo-tag">
-                  {m5View === 'logo' ? 'Dual cabins · RESCO logo' : 'Reverse side · 21.5" screen'}
-                </span>
+                {/* Task 10: Corner tag removed */}
                 <div className="model-view-controls">
                   <button 
                     type="button" 
                     className={`model-view-btn ${m5View === 'logo' ? 'active' : ''}`}
                     onClick={() => setM5View('logo')}
                   >
-                    Dual cabins (RESCO logo)
+                    Cabins
                   </button>
                   <button 
                     type="button" 
                     className={`model-view-btn ${m5View === 'screen' ? 'active' : ''}`}
                     onClick={() => setM5View('screen')}
                   >
-                    21.5&quot; Display screen
+                    Screen
                   </button>
                 </div>
               </div>
               <div className="model-body-text">
+                {/* Task 13: M5 description opening replaced */}
                 <p>
-                  The M5 works exactly as the M6 does — it maps the building, avoids obstacles, calls the lift and telephones the room — but it carries two separate cabins instead of one, so a single trip can serve two rooms or carry two orders that must stay apart.
+                  Everything the M6 does, with two separate cabins, so one trip can serve two rooms or carry two orders that must stay apart.
                 </p>
                 <p>
                   The full-height screen on the front is large enough to run the property’s own branding, wayfinding or announcements between deliveries.
@@ -259,7 +273,7 @@ export default function RobotsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 3b — Which model
+          Section 3b — Which model (Comparison Table)
           =================================================================== */}
       <section className="comparison-section" id="comparison">
         <div className="container">
@@ -392,7 +406,7 @@ export default function RobotsView({ onOpenDemo }) {
           </div>
 
           <div className="dual-block-grid">
-            {/* Section 6 — Charging */}
+            {/* Section 6 — Charging (Task 16 updated) */}
             <div className="info-block-card">
               <div className="info-block-header">
                 <div className="info-icon-wrapper">
@@ -403,11 +417,11 @@ export default function RobotsView({ onOpenDemo }) {
                 </div>
               </div>
               <p className="info-block-desc">
-                It returns to its charging dock on its own when a task finishes or the battery runs low, and connects without help. Runtime is 7 to 9 hours unloaded; a loaded robot in a building with thick carpet and slopes will do less. The dock needs a power point that stays live overnight.
+                It returns to its charging dock on its own when a task finishes or the battery runs low, and connects without help. Runtime is 7–9 hours (M6) or 12 hours (M5), unloaded; a loaded robot in a building with thick carpet and slopes will do less. The dock needs a power point that stays live overnight.
               </p>
             </div>
 
-            {/* Section 7 — Security and records */}
+            {/* Section 7 — Security and records (Task 16: removed delivery audit line) */}
             <div className="info-block-card">
               <div className="info-block-header">
                 <div className="info-icon-wrapper">
@@ -421,10 +435,6 @@ export default function RobotsView({ onOpenDemo }) {
                 <div className="security-point">
                   <span className="bullet-dot"></span>
                   <p>The cabin locks when it is loaded and opens at the destination. What is inside cannot be taken out on the way.</p>
-                </div>
-                <div className="security-point">
-                  <span className="bullet-dot"></span>
-                  <p>Every trip is recorded — time, route, floor and whether the handover completed. A disputed delivery stops being a matter of memory.</p>
                 </div>
                 <div className="security-point">
                   <span className="bullet-dot"></span>
@@ -495,7 +505,7 @@ export default function RobotsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Closing Survey Band
+          Closing Survey Band (Task 31: Book a demo)
           =================================================================== */}
       <section className="robots-closing-band alt-bg" id="robots-survey-cta">
         <div className="container">
@@ -508,9 +518,9 @@ export default function RobotsView({ onOpenDemo }) {
               type="button" 
               className="btn btn-primary btn-lg" 
               onClick={onOpenDemo}
-              id="robotsBookSurveyBtn"
+              id="robotsBookDemoBtn"
             >
-              Book a survey
+              Book a demo
             </button>
           </div>
         </div>

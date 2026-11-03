@@ -32,7 +32,15 @@ export default function SolutionsView({ onOpenDemo }) {
     }
     metaDesc.content = "Where an autonomous indoor delivery robot earns its place: hotels, residential towers, hospitals, offices and serviced apartments.";
     
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, []);
 
   const hotelTrips = [
@@ -68,38 +76,35 @@ export default function SolutionsView({ onOpenDemo }) {
     }
   ];
 
+  // Task 20: Operational limits — strictly one line per card
   const limits = [
     {
       title: "Indoors only",
-      desc: "It works indoors only. A courtyard between two towers breaks the route.",
-      detail: "Weather, curbs, and unmapped outdoor paving fall outside indoor SLAM guidance."
+      desc: "It works indoors only. A courtyard between two towers breaks the route."
     },
     {
       title: "No stairs",
-      desc: "It does not climb stairs, and no robot in this class does.",
-      detail: "Vertical transit strictly requires an IoT lift interface module."
+      desc: "It does not climb stairs, and no robot in this class does."
     },
     {
       title: "Threshold limits",
-      desc: "Thresholds above 2.5 cm and ramps above 12° are out of range.",
-      detail: "Floor transitions must meet gradeability limits (2.5 cm for M6, 2.0 cm for M5)."
+      desc: "Thresholds up to 2.5 cm and slopes up to 12° (M6); 2 cm and 10° (M5)."
     },
     {
-      title: "Lift required for multi-floor",
-      desc: "Low-rise buildings without a lift limit it to a single floor.",
-      detail: "Without a passenger lift, the machine operates within its mapped single level."
+      title: "Lift needed for more than one floor",
+      desc: "Without a passenger lift, it serves one floor only."
     }
   ];
 
   return (
     <div className="solutions-page-view">
       {/* ===================================================================
-          Section 1 — Hero
+          Section 1 — Hero (Task 17: WHERE IT WORKS)
           =================================================================== */}
       <section className="solutions-hero" id="solutions-hero">
         <div className="container">
           <div className="solutions-hero-content section-header text-center">
-            <span className="section-label">Sector deployments</span>
+            <span className="section-label">Where it works</span>
             <h1 className="hero-headline">It does not automate a job. It automates a trip.</h1>
             <p className="hero-subheadline">
               A predictable journey between two fixed points, repeated all day, that currently interrupts somebody doing more valuable work.
@@ -134,7 +139,7 @@ export default function SolutionsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 2 — Hotels
+          Section 2 — Hotels (Task 18 & 19: our robot photo, caption removed)
           =================================================================== */}
       <section className="sector-detail-section" id="hotels">
         <div className="container">
@@ -151,14 +156,11 @@ export default function SolutionsView({ onOpenDemo }) {
             <div className="sector-photo-col">
               <div className="sector-photo-card">
                 <img 
-                  src="/images/hotel-delivery.jpg" 
-                  alt="RESCO delivery robot standing outside a guest room door in a carpeted hotel corridor with warm wall lighting and no visible faces" 
+                  src="/images/resco-hotel-door.jpg" 
+                  alt="RESCO M6 delivery robot outside hotel guest room door" 
                   width="1200"
                   height="675"
                 />
-                <div className="sector-photo-caption">
-                  <span>Outside a guest room door — corridor lighting, silent arrival, telephone chime.</span>
-                </div>
               </div>
             </div>
 
@@ -195,7 +197,7 @@ export default function SolutionsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 3 — Gated communities
+          Section 3 — Gated communities (Task 18: our robot photo)
           =================================================================== */}
       <section className="sector-detail-section alt-bg" id="gated-communities">
         <div className="container">
@@ -241,14 +243,11 @@ export default function SolutionsView({ onOpenDemo }) {
             <div className="sector-photo-col">
               <div className="sector-photo-card">
                 <img 
-                  src="/images/residential-delivery.jpg" 
-                  alt="RESCO indoor delivery robot operating on a residential tower floor by the lift bank and flat doors, completely indoors" 
+                  src="/images/resco-residential-lobby.jpg" 
+                  alt="RESCO M5 delivery robot in residential apartment corridor" 
                   width="1200"
                   height="675"
                 />
-                <div className="sector-photo-caption">
-                  <span>Inside the tower — from the lobby and lift car to the flat door. Never outdoor grounds.</span>
-                </div>
               </div>
             </div>
           </div>
@@ -285,7 +284,7 @@ export default function SolutionsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 5 — Where it does not fit
+          Section 5 — Operational limits (Task 20: one line per card)
           =================================================================== */}
       <section className="disqualification-section alt-bg" id="where-it-does-not-fit">
         <div className="container">
@@ -304,7 +303,6 @@ export default function SolutionsView({ onOpenDemo }) {
                   <h3 className="limit-title">{item.title}</h3>
                 </div>
                 <p className="limit-desc">{item.desc}</p>
-                <span className="limit-detail">{item.detail}</span>
               </div>
             ))}
           </div>
@@ -312,7 +310,7 @@ export default function SolutionsView({ onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 6 — Closing band
+          Section 6 — Closing band (Task 31: Book a demo)
           =================================================================== */}
       <section className="solutions-closing-band" id="solutions-closing">
         <div className="container">
@@ -328,9 +326,9 @@ export default function SolutionsView({ onOpenDemo }) {
                   type="button" 
                   className="btn btn-primary btn-lg" 
                   onClick={onOpenDemo}
-                  id="solutionsBookSurveyBtn"
+                  id="solutionsBookDemoBtn"
                 >
-                  Book a survey
+                  Book a demo
                 </button>
               </div>
             </div>

@@ -2,29 +2,23 @@ import React from 'react';
 
 export default function ProblemSection() {
   return (
-    <section className="problem-section">
+    <section className="problem-section" id="problem">
       <div className="container problem-grid">
         <div className="problem-text section-header text-left">
           <span className="section-label">The Problem</span>
-          <h2 className="section-title">The same short walk, fifty times a day.</h2>
+          <h2 className="section-title">Small trips that take people off their posts.</h2>
           <p className="problem-body">
-            Every building runs on small repeated journeys. A tray to 704. A parcel from the security desk to the eleventh floor. A forgotten toothbrush at midnight. Each one takes somebody away from the desk, the kitchen or the gate for ten or fifteen minutes, and none of them needs judgement — only legs. Those are the trips RESCO takes over.
+            A tray to room 704. A parcel from the gate to the eleventh floor. Towels at midnight. Each trip takes someone away from the front desk, the kitchen or the security gate for ten or fifteen minutes. In residential towers, it also means a delivery rider nobody knows walking the corridors. RESCO takes over these trips, so staff stay where they&apos;re needed and riders stay at the gate.
           </p>
-          <div className="problem-highlight-box">
-            "None of them needs judgement — only legs. Those are the trips RESCO takes over."
-          </div>
         </div>
 
         <div className="problem-image-wrapper">
           <img 
             src="/images/staff-corridor.jpg" 
-            alt="A member of staff walking a corridor with a tray, shot from behind" 
+            alt="Hotel staff member carrying a room service tray down a corridor" 
             width="600" 
             height="450" 
           />
-          <div className="problem-image-overlay">
-            <span className="problem-caption">Staff pulled away from guests and gates for routine trips.</span>
-          </div>
         </div>
       </div>
     </section>

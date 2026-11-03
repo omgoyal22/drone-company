@@ -5,7 +5,7 @@ export default function BrandStatementSection() {
   const capabilities = [
     {
       icon: <Package size={22} />,
-      title: "Carries up to 10 kg",
+      title: "Carries up to 15 kg",
       desc: "A tray, a parcel, extra towels or late-night room requests. The cabin locks until arrival."
     },
     {

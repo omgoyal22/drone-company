@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ShieldCheck, X } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, X, Loader2 } from 'lucide-react';
 
 export default function DemoForm({ isModal = false, onClose = null }) {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -20,18 +21,63 @@ export default function DemoForm({ isModal = false, onClose = null }) {
     hpField: '' // Honeypot spam protection
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.hpField) {
       // Spam honeypot triggered
       return;
     }
-    setSubmitted(true);
+    
+    setIsSubmitting(true);
+
+    try {
+      // Send form submission to shlok@rescotech.com with auto-response
+      await fetch("https://formsubmit.co/ajax/shlok@rescotech.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          city: formData.city,
+          propertyType: formData.propertyType,
+          floors: formData.floors,
+          hasPassengerLifts: formData.hasPassengerLifts,
+          roomsOrFlats: formData.roomsOrFlats,
+          interestType: formData.interestType,
+          deployTimeline: formData.deployTimeline,
+          notes: formData.notes,
+          _subject: `New Demo & Survey Request: ${formData.company} (${formData.name})`,
+          _replyto: formData.email,
+          _autoresponse: `Thank you for your enquiry with RESCO. We have received your demonstration and building survey request for ${formData.company || 'your property'}. Our team will review your building parameters and contact you within one business day.`
+        })
+      });
+    } catch (err) {
+      console.warn("Form submission fallback:", err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
     if (onClose) onClose();
+  };
+
+  const handlePrivacyClick = (e) => {
+    e.preventDefault();
+    if (onClose) onClose();
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', '/privacy');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    } else {
+      window.location.href = '/privacy';
+    }
   };
 
   if (submitted) {
@@ -41,12 +87,13 @@ export default function DemoForm({ isModal = false, onClose = null }) {
           <CheckCircle2 size={52} className="thankyou-check" />
         </div>
         <h2 className="thankyou-title">Demo and survey request received</h2>
+        {/* Task 25: changed to "has reached our team" */}
         <p className="thankyou-body">
-          Thank you, <strong>{formData.name}</strong>. Your enquiry for <strong>{formData.company || 'your property'}</strong> has reached our Mumbai engineering team. We will call you within one business day to review your building details.
+          Thank you, <strong>{formData.name}</strong>. Your enquiry for <strong>{formData.company || 'your property'}</strong> has reached our team. We will call you within one business day to review your building details.
         </p>
         <div className="thankyou-details-box">
           <div className="thankyou-row">
-            <span className="thankyou-label">Confirmation email:</span>
+            <span className="thankyou-label">Confirmation email sent to:</span>
             <span className="thankyou-val">{formData.email}</span>
           </div>
           {formData.propertyType && (
@@ -331,14 +378,19 @@ export default function DemoForm({ isModal = false, onClose = null }) {
             id="dfConsentCheckbox"
           />
           <span>
-            I agree to be contacted about this enquiry. <a href="#privacy" onClick={(e) => e.preventDefault()} className="privacy-link">Privacy Policy</a>
+            I agree to be contacted about this enquiry. <a href="/privacy" onClick={handlePrivacyClick} className="privacy-link">Privacy Policy</a>
           </span>
         </label>
       </div>
 
       <div className="form-submit-row">
-        <button type="submit" className="btn btn-primary btn-lg" id={isModal ? "modalBookDemoSubmit" : "contactBookDemoSubmit"}>
-          Book a demo
+        <button 
+          type="submit" 
+          className="btn btn-primary btn-lg" 
+          id={isModal ? "modalBookDemoSubmit" : "contactBookDemoSubmit"}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Sending enquiry...' : 'Book a demo'}
         </button>
         <span className="submit-security-note">
           <ShieldCheck size={16} /> Handled directly by PDR Videotronics, Mumbai

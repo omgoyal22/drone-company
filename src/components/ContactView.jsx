@@ -32,6 +32,7 @@ export default function ContactView() {
 
   // Brochure Form State
   const [brochureSubmitted, setBrochureSubmitted] = useState(false);
+  const [brochureSubmitting, setBrochureSubmitting] = useState(false);
   const [brochureData, setBrochureData] = useState({
     name: '',
     email: '',
@@ -41,6 +42,7 @@ export default function ContactView() {
   // Partner Modal State
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [partnerSubmitted, setPartnerSubmitted] = useState(false);
+  const [partnerSubmitting, setPartnerSubmitting] = useState(false);
   const [partnerData, setPartnerData] = useState({
     name: '',
     company: '',
@@ -76,11 +78,11 @@ export default function ContactView() {
     },
     {
       q: "How much can it carry?",
-      a: "Up to 10 kg, in a cabin of 280 × 280 × 330 mm. In practice the space runs out before the weight does."
+      a: "Up to 10 kg in the M6 (cabin 280 × 280 × 330 mm) or 15 kg in the M5, across two cabins."
     },
     {
       q: "How long does it run between charges?",
-      a: "7 to 9 hours unloaded. It returns to its dock and charges on its own; expect less in a building with thick carpet and slopes."
+      a: "7 to 9 hours for the M6, 12 hours for the M5, unloaded. It returns to its dock and charges on its own; expect less in a building with thick carpet and slopes."
     },
     {
       q: "Can it go outdoors or climb stairs?",
@@ -112,14 +114,61 @@ export default function ContactView() {
     }
   ];
 
-  const handleBrochureSubmit = (e) => {
+  // Task 24: Submit brochure request to shlok@rescotech.com
+  const handleBrochureSubmit = async (e) => {
     e.preventDefault();
-    setBrochureSubmitted(true);
+    setBrochureSubmitting(true);
+    try {
+      await fetch("https://formsubmit.co/ajax/shlok@rescotech.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: brochureData.name,
+          email: brochureData.email,
+          company: brochureData.company,
+          _subject: `New Brochure Request: ${brochureData.name} (${brochureData.company})`,
+          _replyto: brochureData.email
+        })
+      });
+    } catch (err) {
+      console.warn("Brochure submission fallback:", err);
+    } finally {
+      setBrochureSubmitting(false);
+      setBrochureSubmitted(true);
+    }
   };
 
-  const handlePartnerSubmit = (e) => {
+  // Task 24: Submit partner request to shlok@rescotech.com
+  const handlePartnerSubmit = async (e) => {
     e.preventDefault();
-    setPartnerSubmitted(true);
+    setPartnerSubmitting(true);
+    try {
+      await fetch("https://formsubmit.co/ajax/shlok@rescotech.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: partnerData.name,
+          company: partnerData.company,
+          email: partnerData.email,
+          phone: partnerData.phone,
+          market: partnerData.market,
+          notes: partnerData.notes,
+          _subject: `New Channel Partner Enquiry: ${partnerData.company} (${partnerData.name})`,
+          _replyto: partnerData.email
+        })
+      });
+    } catch (err) {
+      console.warn("Partner submission fallback:", err);
+    } finally {
+      setPartnerSubmitting(false);
+      setPartnerSubmitted(true);
+    }
   };
 
   const whatsappUrl = "https://wa.me/912224306494?text=" + encodeURIComponent("Hi RESCO team, I would like to inquire about an on-site demonstration and survey for our property.");
@@ -205,10 +254,11 @@ export default function ContactView() {
                 Leave a name and an email and the product brochure comes straight through.
               </p>
 
+              {/* Task 26: Brochure success message */}
               {brochureSubmitted ? (
                 <div className="brochure-success">
                   <CheckCircle2 size={24} className="brochure-check" />
-                  <p>Brochure sent to <strong>{brochureData.email}</strong>. Please check your inbox.</p>
+                  <p>Thanks — we&apos;ll email you the brochure shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleBrochureSubmit} className="brochure-form">
@@ -251,8 +301,13 @@ export default function ContactView() {
                     />
                   </div>
 
-                  <button type="submit" className="btn btn-primary" id="sendBrochureBtn">
-                    Send me the brochure
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    id="sendBrochureBtn"
+                    disabled={brochureSubmitting}
+                  >
+                    {brochureSubmitting ? 'Sending...' : 'Send me the brochure'}
                   </button>
                 </form>
               )}
@@ -287,7 +342,7 @@ export default function ContactView() {
       </section>
 
       {/* ===================================================================
-          Section 4 — Contact Details
+          Section 4 — Contact Details (Task 34: info@rescotech.com)
           =================================================================== */}
       <section className="contact-details-band alt-bg" id="contact-details">
         <div className="container">
@@ -296,7 +351,7 @@ export default function ContactView() {
               <span className="section-label">Headquarters</span>
               <h2 className="section-title">Direct contact</h2>
               <p className="details-address-text">
-                PDR Videotronics (India) Private Limited, 99 Old Prabhadevi Road, Mumbai 400 025 · +91 22 2430 6494 · +91 86910 00897 · info@pdrworld.com
+                PDR Videotronics (India) Private Limited, 99 Old Prabhadevi Road, Mumbai 400 025 · +91 22 2430 6494 · +91 86910 00897 · info@rescotech.com
               </p>
             </div>
 
@@ -307,7 +362,7 @@ export default function ContactView() {
               <a href={whatsappUrl} className="btn btn-whatsapp btn-lg" target="_blank" rel="noopener noreferrer" id="contactWhatsappBtn">
                 <MessageCircle size={18} /> WhatsApp
               </a>
-              <a href="mailto:info@pdrworld.com" className="btn btn-outline btn-lg" id="contactEmailBtn">
+              <a href="mailto:info@rescotech.com" className="btn btn-outline btn-lg" id="contactEmailBtn">
                 <Mail size={18} /> Email
               </a>
             </div>
@@ -316,7 +371,7 @@ export default function ContactView() {
       </section>
 
       {/* ===================================================================
-          Section 5 — Questions (Full FAQ with 13 Questions)
+          Section 5 — Questions (Full FAQ with 13 Questions, Task 27 updated)
           =================================================================== */}
       <section className="contact-faq-section" id="questions">
         <div className="container">
@@ -465,8 +520,12 @@ export default function ContactView() {
                   </div>
 
                   <div className="modal-actions">
-                    <button type="submit" className="btn btn-primary btn-lg">
-                      Submit partner enquiry
+                    <button 
+                      type="submit" 
+                      className="btn btn-primary btn-lg"
+                      disabled={partnerSubmitting}
+                    >
+                      {partnerSubmitting ? 'Submitting...' : 'Submit partner enquiry'}
                     </button>
                   </div>
                 </form>

@@ -3,7 +3,6 @@ import React from 'react';
 export default function Footer({ setActivePage }) {
   const handleNav = (page) => {
     setActivePage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -53,14 +52,14 @@ export default function Footer({ setActivePage }) {
             <h4 className="footer-col-title">Legal</h4>
             <ul className="footer-links">
               <li>
-                <a href="#privacy" className="footer-link" onClick={(e) => e.preventDefault()}>
+                <button type="button" className="footer-link" onClick={() => handleNav('privacy')}>
                   Privacy Policy
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#terms" className="footer-link" onClick={(e) => e.preventDefault()}>
+                <button type="button" className="footer-link" onClick={() => handleNav('terms')}>
                   Terms
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -72,18 +71,7 @@ export default function Footer({ setActivePage }) {
               <strong>PDR Videotronics (India) Private Limited</strong>
               99 Old Prabhadevi Road, Mumbai 400 025<br />
               Phone: <a href="tel:+912224306494" className="footer-link">+91 22 2430 6494</a><br />
-              Email: <a href="mailto:info@pdrworld.com" className="footer-link">info@pdrworld.com</a>
-            </div>
-          </div>
-
-          {/* Column 4: Social */}
-          <div>
-            <h4 className="footer-col-title">Social</h4>
-            <div className="footer-social-links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="footer-link">YouTube</a>
-              <span className="social-pdr-note">[LinkedIn, Instagram, YouTube — PDR to supply the links it wants shown]</span>
+              Email: <a href="mailto:info@rescotech.com" className="footer-link">info@rescotech.com</a>
             </div>
           </div>
         </div>

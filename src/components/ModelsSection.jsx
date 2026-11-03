@@ -29,9 +29,9 @@ export default function ModelsSection({ onNavigateRobots }) {
                   type="button" 
                   className={`thumb-btn ${m6View === 'logo' ? 'active' : ''}`}
                   onClick={() => setM6View('logo')}
-                  title="Front view with RESCO logo"
+                  title="Front view"
                 >
-                  Front (Logo)
+                  Front
                 </button>
                 <button 
                   type="button" 
@@ -70,9 +70,9 @@ export default function ModelsSection({ onNavigateRobots }) {
                   type="button" 
                   className={`thumb-btn ${m5View === 'logo' ? 'active' : ''}`}
                   onClick={() => setM5View('logo')}
-                  title="Dual cabin view with RESCO logo"
+                  title="Dual cabin view"
                 >
-                  Cabins (Logo)
+                  Cabins
                 </button>
                 <button 
                   type="button" 
@@ -90,6 +90,7 @@ export default function ModelsSection({ onNavigateRobots }) {
                 Two cabins, so it can carry two deliveries on one trip, with a 21.5 inch screen on the front that can carry your own branding or notices.
               </p>
               <div className="model-specs-strip">
+                <span className="spec-pill">Payload: 15 kg</span>
                 <span className="spec-pill">Screen: 21.5 inch</span>
                 <span className="spec-pill">2 Locked cabins</span>
                 <span className="spec-pill">Carries 2 deliveries</span>
@@ -102,7 +103,7 @@ export default function ModelsSection({ onNavigateRobots }) {
           <button 
             type="button" 
             className="arrow-link" 
-            onClick={onNavigateRobots}
+            onClick={() => onNavigateRobots('comparison')}
           >
             Compare both <ArrowRight size={18} />
           </button>

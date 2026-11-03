@@ -6,8 +6,8 @@ export default function WhyRescoSection() {
     {
       num: "01",
       icon: <MapPin size={22} />,
-      title: "One Indian counterparty",
-      desc: "RESCO is the robotics brand of PDR Videotronics, a Mumbai manufacturer. You deal with a company down the road, not a factory abroad."
+      title: "Backed by PDR Videotronics.",
+      desc: "RESCO is the robotics brand of PDR Videotronics, Mumbai. You deal with a company here, with a contact you can call."
     },
     {
       num: "02",
@@ -45,16 +45,6 @@ export default function WhyRescoSection() {
               <p className="why-card-desc">{pt.desc}</p>
             </div>
           ))}
-        </div>
-
-        <div className="why-trust-footer">
-          <div className="why-trust-badge">
-            <span className="stat-pulse-dot"></span>
-            <span>Manufactured &amp; supported by <strong>PDR Videotronics (India) Private Limited</strong>, Mumbai</span>
-          </div>
-          <div className="why-trust-badge">
-            <span>Round-the-clock monitoring · Spares in Mumbai · Dedicated property contact</span>
-          </div>
         </div>
       </div>
     </section>

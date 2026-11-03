@@ -58,7 +58,7 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
   return (
     <div className="about-page-view">
       {/* ===================================================================
-          Section 1 — Hero
+          Section 1 — Hero (Task 21 & 22)
           =================================================================== */}
       <section className="about-hero" id="about-hero">
         <div className="container">
@@ -66,7 +66,7 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
             <span className="section-label">Service robotics · Mumbai</span>
             <h1 className="hero-headline">Robots that have to work on a Tuesday afternoon.</h1>
             <p className="hero-subheadline">
-              RESCO is the service robotics brand of PDR Videotronics (India) Private Limited, a Mumbai company that has been supplying Indian industry since [year — PDR to confirm].
+              RESCO is the service robotics brand of PDR Videotronics (India) Private Limited, a Mumbai company that has been supplying Indian industry since 1974.
             </p>
           </div>
 
@@ -76,13 +76,13 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
                 <span className="identity-tag">Operating entity</span>
                 <h3 className="identity-company">PDR Videotronics (India) Private Limited</h3>
                 <p className="identity-desc">
-                  Engineering, deployment, lift interface coordination, and 24/7 technical lifecycle support for autonomous commercial delivery robotics across India.
+                  Deployment, lift coordination and 24/7 support for RESCO robots.
                 </p>
               </div>
               <div className="about-metrics-strip">
                 <div className="metric-box">
                   <span className="metric-num">Mumbai</span>
-                  <span className="metric-label">HQ and engineering centre</span>
+                  <span className="metric-label">Head office</span>
                 </div>
                 <div className="metric-box">
                   <span className="metric-num">End-to-End</span>
@@ -165,7 +165,7 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
       </section>
 
       {/* ===================================================================
-          Section 5 — Where we are
+          Section 5 — Where we are (Task 23 & 31)
           =================================================================== */}
       <section className="about-location-section" id="where-we-are">
         <div className="container">
@@ -184,9 +184,6 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
                 <p className="location-address">
                   99 Old Prabhadevi Road, Mumbai 400 025.
                 </p>
-                <p className="location-note">
-                  Operating nationally with survey, commissioning, and on-site field engineering teams.
-                </p>
               </div>
             </div>
 
@@ -194,18 +191,10 @@ export default function AboutView({ onNavigateContact, onOpenDemo }) {
               <button 
                 type="button" 
                 className="btn btn-primary btn-lg" 
-                onClick={onNavigateContact}
-                id="aboutTalkToUsBtn"
-              >
-                Talk to us
-              </button>
-              <button 
-                type="button" 
-                className="btn btn-outline btn-lg" 
                 onClick={onOpenDemo}
-                id="aboutBookSurveyBtn"
+                id="aboutBookDemoBtn"
               >
-                Book a survey
+                Book a demo
               </button>
             </div>
           </div>

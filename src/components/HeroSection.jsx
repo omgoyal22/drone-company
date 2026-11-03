@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 
 export default function HeroSection({ onOpenDemo, onScrollHowItWorks, heroVideoUrl = null }) {
   return (
@@ -31,10 +30,6 @@ export default function HeroSection({ onOpenDemo, onScrollHowItWorks, heroVideoU
               See how it works
             </button>
           </div>
-          <div className="hero-trust-badge">
-            <span className="pdr-badge-tag">PDR Videotronics (India)</span>
-            <span>— Engineered for Indian lifts, Wi-Fi &amp; corridors</span>
-          </div>
         </div>
 
         <div className="hero-visual">
@@ -45,21 +40,21 @@ export default function HeroSection({ onOpenDemo, onScrollHowItWorks, heroVideoU
                 loop 
                 muted 
                 playsInline 
-                poster="/images/hero-robot.jpg"
+                poster="/images/resco-hotel-corridor.jpg"
                 className="hero-video-player"
               >
                 <source src={heroVideoUrl} type="video/mp4" />
                 <img 
-                  src="/images/hero-robot.jpg" 
-                  alt="RESCO robot in a corridor, shot slightly from the front and side, lift doors visible behind it" 
+                  src="/images/resco-hotel-corridor.jpg" 
+                  alt="RESCO M6 delivery robot in a hotel corridor" 
                   width="800" 
                   height="533" 
                 />
               </video>
             ) : (
               <img 
-                src="/images/hero-robot.jpg" 
-                alt="RESCO robot in a corridor, shot slightly from the front and side, lift doors visible behind it" 
+                src="/images/resco-hotel-corridor.jpg" 
+                alt="RESCO M6 delivery robot in a hotel corridor" 
                 width="800" 
                 height="533" 
               />
